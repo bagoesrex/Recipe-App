@@ -3,69 +3,27 @@ import 'package:recipe_app/models/category.dart';
 import 'package:recipe_app/models/recipe.dart';
 
 const availableCategories = [
-  Category(
-    id: 'c1',
-    title: 'Makanan Padang',
-    color: Colors.green,
-  ),
-  Category(
-    id: 'c2',
-    title: 'Makanan Jawa',
-    color: Colors.brown,
-  ),
-  Category(
-    id: 'c3',
-    title: 'Makanan Sunda',
-    color: Colors.orange,
-  ),
-  Category(
-    id: 'c4',
-    title: 'Makanan Bali',
-    color: Colors.red,
-  ),
-  Category(
-    id: 'c5',
-    title: 'Makanan Manado',
-    color: Colors.blue,
-  ),
-  Category(
-    id: 'c6',
-    title: 'Makanan Aceh',
-    color: Colors.purple,
-  ),
-  Category(
-    id: 'c7',
-    title: 'Sarapan Indonesia',
-    color: Colors.lightBlue,
-  ),
-  Category(
-    id: 'c8',
-    title: 'Makanan Tradisional',
-    color: Colors.amber,
-  ),
-  Category(
-    id: 'c9',
-    title: 'Makanan Laut',
-    color: Colors.teal,
-  ),
-  Category(
-    id: 'c10',
-    title: 'Makanan Ringan',
-    color: Colors.pink,
-  ),
+  Category(id: 'c1', title: 'Makanan Padang', color: Colors.green),
+  Category(id: 'c2', title: 'Makanan Jawa', color: Colors.brown),
+  Category(id: 'c3', title: 'Makanan Sunda', color: Colors.orange),
+  Category(id: 'c4', title: 'Makanan Bali', color: Colors.red),
+  Category(id: 'c5', title: 'Makanan Manado', color: Colors.blue),
+  Category(id: 'c6', title: 'Makanan Aceh', color: Colors.purple),
+  Category(id: 'c7', title: 'Sarapan Indonesia', color: Colors.lightBlue),
+  Category(id: 'c8', title: 'Makanan Tradisional', color: Colors.amber),
+  Category(id: 'c9', title: 'Makanan Laut', color: Colors.teal),
+  Category(id: 'c10', title: 'Makanan Ringan', color: Colors.pink),
 ];
 
 const dummyRecipes = [
   Recipe(
     id: 'm1',
-    categories: [
-      'c1',
-      'c2',
-    ],
+    categories: ['c1', 'c2'],
     title: 'Rendang',
     affordability: Affordability.pricey,
     complexity: Complexity.hard,
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Rendang_daging.jpg',
+    imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Rendang_daging_sapi_asli_Padang.JPG/1280px-Rendang_daging_sapi_asli_Padang.JPG',
     duration: 240,
     ingredients: [
       '1 kg daging sapi',
@@ -79,7 +37,7 @@ const dummyRecipes = [
       '3 cm kunyit',
       '10 buah cabai merah',
       '1 sdt garam',
-      '1 sdt gula merah'
+      '1 sdt gula merah',
     ],
     steps: [
       'Haluskan bawang merah, bawang putih, cabai, jahe, lengkuas, kunyit.',
@@ -87,7 +45,7 @@ const dummyRecipes = [
       'Masukkan daging sapi, aduk rata.',
       'Tuangkan santan, masak dengan api kecil hingga meresap dan kering.',
       'Aduk sesekali agar tidak gosong.',
-      'Masak hingga rendang berwarna coklat gelap dan matang sempurna.'
+      'Masak hingga rendang berwarna coklat gelap dan matang sempurna.',
     ],
     isGlutenFree: true,
     isVegan: false,
@@ -100,7 +58,8 @@ const dummyRecipes = [
     title: 'Nasi Liwet',
     affordability: Affordability.affordable,
     complexity: Complexity.simple,
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/d/d6/Nasi_Liwet_Sunda.jpg',
+    imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Nasi_Liwet_Solo.jpg/1024px-Nasi_Liwet_Solo.jpg',
     duration: 60,
     ingredients: [
       '2 gelas beras',
@@ -109,14 +68,14 @@ const dummyRecipes = [
       '3 lembar daun salam',
       '3 siung bawang merah',
       '1 sdt garam',
-      '1 sdt kaldu ayam bubuk'
+      '1 sdt kaldu ayam bubuk',
     ],
     steps: [
       'Cuci bersih beras, lalu masukkan ke dalam rice cooker.',
       'Iris bawang merah, lalu tumis hingga harum.',
       'Tambahkan serai dan daun salam, tumis sebentar.',
       'Masukkan tumisan ke dalam rice cooker bersama air, garam, dan kaldu bubuk.',
-      'Masak hingga nasi matang dan sajikan dengan lauk favorit.'
+      'Masak hingga nasi matang dan sajikan dengan lauk favorit.',
     ],
     isGlutenFree: true,
     isVegan: false,
@@ -129,7 +88,8 @@ const dummyRecipes = [
     title: 'Cakalang Fufu',
     affordability: Affordability.pricey,
     complexity: Complexity.challenging,
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/3a/Cakalang_Fufu.jpg',
+    imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Cakalang_fufu.JPG/1024px-Cakalang_fufu.JPG',
     duration: 90,
     ingredients: [
       '1 ekor ikan cakalang',
@@ -139,7 +99,7 @@ const dummyRecipes = [
       '2 sdt garam',
       '1 sdt gula',
       '1 batang serai',
-      '1 lembar daun jeruk'
+      '1 lembar daun jeruk',
     ],
     steps: [
       'Bersihkan ikan cakalang dan belah menjadi dua bagian.',
@@ -147,7 +107,7 @@ const dummyRecipes = [
       'Asapkan ikan hingga matang dan berwarna kemerahan.',
       'Tumis bawang putih, bawang merah, cabai, serai, dan daun jeruk hingga harum.',
       'Suwir ikan cakalang dan masukkan ke dalam tumisan.',
-      'Masak hingga meresap dan siap disajikan.'
+      'Masak hingga meresap dan siap disajikan.',
     ],
     isGlutenFree: true,
     isVegan: false,
@@ -160,7 +120,8 @@ const dummyRecipes = [
     title: 'Bubur Ayam',
     affordability: Affordability.affordable,
     complexity: Complexity.simple,
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/3e/Bubur_Ayam_Sunda.jpg',
+    imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Bubur_ayam_chicken_porridge.JPG/1024px-Bubur_ayam_chicken_porridge.JPG',
     duration: 30,
     ingredients: [
       '1 cup beras',
@@ -169,13 +130,13 @@ const dummyRecipes = [
       '1 batang daun bawang',
       '1 sdt garam',
       '1 sdt kaldu ayam',
-      'Kecap manis dan kerupuk'
+      'Kecap manis dan kerupuk',
     ],
     steps: [
       'Masak beras dengan air hingga menjadi bubur.',
       'Rebus ayam hingga matang lalu suwir-suwir.',
       'Tambahkan garam dan kaldu ke dalam bubur, aduk rata.',
-      'Sajikan dengan ayam suwir, daun bawang, kecap manis, dan kerupuk.'
+      'Sajikan dengan ayam suwir, daun bawang, kecap manis, dan kerupuk.',
     ],
     isGlutenFree: true,
     isVegan: false,
@@ -188,7 +149,8 @@ const dummyRecipes = [
     title: 'Pisang Goreng',
     affordability: Affordability.affordable,
     complexity: Complexity.simple,
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/3c/Pisang_Goreng.jpg',
+    imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/1/18/Banana_empanada.jpg',
     duration: 20,
     ingredients: [
       '5 buah pisang kepok',
@@ -196,13 +158,13 @@ const dummyRecipes = [
       '1 sdt gula pasir',
       '1/2 sdt garam',
       '100 ml air',
-      'Minyak untuk menggoreng'
+      'Minyak untuk menggoreng',
     ],
     steps: [
       'Campurkan tepung terigu, gula, garam, dan air, aduk hingga menjadi adonan.',
       'Celupkan pisang ke dalam adonan.',
       'Goreng pisang dalam minyak panas hingga keemasan.',
-      'Tiriskan dan sajikan hangat.'
+      'Tiriskan dan sajikan hangat.',
     ],
     isGlutenFree: false,
     isVegan: true,
