@@ -4,9 +4,14 @@ import 'package:recipe_app/widgets/recipe_item_trait.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class RecipeItem extends StatelessWidget {
-  const RecipeItem({super.key, required this.recipe});
+  const RecipeItem({
+    super.key,
+    required this.recipe,
+    required this.onSelectRecipe,
+  });
 
   final Recipe recipe;
+  final void Function(BuildContext context, Recipe recipe) onSelectRecipe;
 
   String get complexityText {
     return recipe.complexity.name[0].toUpperCase() +
@@ -26,7 +31,7 @@ class RecipeItem extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       elevation: 2,
       child: InkWell(
-        onTap: () {},
+        onTap: () => onSelectRecipe(context, recipe),
         child: Stack(
           children: [
             FadeInImage(

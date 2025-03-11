@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/models/recipe.dart';
+import 'package:recipe_app/screens/recipe_details.dart';
 import 'package:recipe_app/widgets/recipe_item.dart';
 
 class RecipesScreen extends StatelessWidget {
@@ -7,6 +8,12 @@ class RecipesScreen extends StatelessWidget {
 
   final String title;
   final List<Recipe> recipes;
+
+  void selectRecipe(BuildContext context, Recipe recipe) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (ctx) => RecipeDetailsScreen(recipe: recipe)),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +41,13 @@ class RecipesScreen extends StatelessWidget {
     if (recipes.isNotEmpty) {
       body = ListView.builder(
         itemCount: recipes.length,
-        itemBuilder: (ctx, index) => RecipeItem(recipe: recipes[index]),
+        itemBuilder:
+            (ctx, index) => RecipeItem(
+              recipe: recipes[index],
+              onSelectRecipe: (context, recipe) {
+                selectRecipe(context, recipe);
+              },
+            ),
       );
     }
 
