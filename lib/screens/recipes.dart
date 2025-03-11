@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/models/recipe.dart';
+import 'package:recipe_app/widgets/recipe_item.dart';
 
 class RecipesScreen extends StatelessWidget {
   const RecipesScreen({super.key, required this.title, required this.recipes});
@@ -33,7 +34,7 @@ class RecipesScreen extends StatelessWidget {
     if (recipes.isNotEmpty) {
       body = ListView.builder(
         itemCount: recipes.length,
-        itemBuilder: (ctx, index) => Text(recipes[index].title),
+        itemBuilder: (ctx, index) => RecipeItem(recipe: recipes[index]),
       );
     }
 
