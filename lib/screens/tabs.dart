@@ -16,6 +16,13 @@ class _TabsScreenState extends State<TabsScreen> {
   int _selectedPageIndex = 0;
   final List<Recipe> _favoriteRecipes = [];
 
+  void _showInfoMessage(String message) {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
+  }
+
   void _toggleRecipeFavoriteStatus(Recipe recipe) {
     final isExisting = _favoriteRecipes.contains(recipe);
 
@@ -23,8 +30,12 @@ class _TabsScreenState extends State<TabsScreen> {
       setState(() {
         _favoriteRecipes.remove(recipe);
       });
+      _showInfoMessage('Recipe dihapus dari favorite.');
     } else {
-      _favoriteRecipes.add(recipe);
+      setState(() {
+        _favoriteRecipes.add(recipe);
+      });
+      _showInfoMessage('Recipe ditambahkan ke favorite.');
     }
   }
 
