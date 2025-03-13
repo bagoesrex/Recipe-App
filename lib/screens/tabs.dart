@@ -20,7 +20,9 @@ class _TabsScreenState extends State<TabsScreen> {
     final isExisting = _favoriteRecipes.contains(recipe);
 
     if (isExisting) {
-      _favoriteRecipes.remove(recipe);
+      setState(() {
+        _favoriteRecipes.remove(recipe);
+      });
     } else {
       _favoriteRecipes.add(recipe);
     }
@@ -41,7 +43,7 @@ class _TabsScreenState extends State<TabsScreen> {
 
     if (_selectedPageIndex == 1) {
       activePage = RecipesScreen(
-        recipes: [],
+        recipes: _favoriteRecipes,
         onToggleFavorite: _toggleRecipeFavoriteStatus,
       );
       activePageTitle = 'Favorites';
