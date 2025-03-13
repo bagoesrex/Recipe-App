@@ -2,14 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:recipe_app/models/recipe.dart';
 
 class RecipeDetailsScreen extends StatelessWidget {
-  const RecipeDetailsScreen({super.key, required this.recipe});
+  const RecipeDetailsScreen({
+    super.key,
+    required this.recipe,
+    required this.onToggleFavorite,
+  });
 
   final Recipe recipe;
+  final void Function(Recipe recipe) onToggleFavorite;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(recipe.title)),
+      appBar: AppBar(
+        title: Text(recipe.title),
+        actions: [
+          IconButton(
+            onPressed: () {
+              onToggleFavorite(recipe);
+            },
+            icon: Icon(Icons.star),
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
