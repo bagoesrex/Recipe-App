@@ -6,13 +6,14 @@ import 'package:recipe_app/screens/recipes.dart';
 import 'package:recipe_app/widgets/category_grid_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key, required this.onToggleFavorite});
+  const CategoriesScreen({super.key, required this.onToggleFavorite, required this.availableRecipes});
 
   final void Function(Recipe recipe) onToggleFavorite;
+  final List<Recipe> availableRecipes;
 
   void _selectCategory(BuildContext context, Category category) {
     final filteredRecipes =
-        dummyRecipes
+        availableRecipes
             .where((recipe) => recipe.categories.contains(category.id))
             .toList();
 
