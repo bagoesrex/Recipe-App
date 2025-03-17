@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app/data/dummy_data.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:recipe_app/models/recipe.dart';
+import 'package:recipe_app/provider/recipes_provider.dart';
 import 'package:recipe_app/screens/categories.dart';
 import 'package:recipe_app/screens/filters.dart';
 import 'package:recipe_app/screens/recipes.dart';
@@ -13,16 +14,16 @@ const kInitialFilters = {
   Filter.vegan: false,
 };
 
-class TabsScreen extends StatefulWidget {
+class TabsScreen extends ConsumerStatefulWidget {
   const TabsScreen({super.key});
 
   @override
-  State<TabsScreen> createState() {
+  ConsumerState<TabsScreen> createState() {
     return _TabsScreenState();
   }
 }
 
-class _TabsScreenState extends State<TabsScreen> {
+class _TabsScreenState extends ConsumerState<TabsScreen> {
   int _selectedPageIndex = 0;
   final List<Recipe> _favoriteRecipes = [];
   Map<Filter, bool> _selectedFilters = kInitialFilters;
@@ -60,7 +61,9 @@ class _TabsScreenState extends State<TabsScreen> {
     Navigator.of(context).pop();
     if (identifier == 'filters') {
       final result = await Navigator.of(context).push<Map<Filter, bool>>(
-        MaterialPageRoute(builder: (ctx) => FiltersScreen(currentFilters: _selectedFilters,)),
+        MaterialPageRoute(
+          builder: (ctx) => FiltersScreen(currentFilters: _selectedFilters),
+        ),
       );
 
       setState(() {
@@ -71,8 +74,9 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final recipes = ref.watch(RecipesProvider);
     final availableRecipes =
-        dummyRecipes.where((recipe) {
+        recipes.where((recipe) {
           if (_selectedFilters[Filter.glutenFree]! && !recipe.isGlutenFree) {
             return false;
           }
