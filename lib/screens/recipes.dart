@@ -4,26 +4,14 @@ import 'package:recipe_app/screens/recipe_details.dart';
 import 'package:recipe_app/widgets/recipe_item.dart';
 
 class RecipesScreen extends StatelessWidget {
-  const RecipesScreen({
-    super.key,
-    this.title,
-    required this.recipes,
-    required this.onToggleFavorite,
-  });
+  const RecipesScreen({super.key, this.title, required this.recipes});
 
   final String? title;
   final List<Recipe> recipes;
-  final void Function(Recipe recipe) onToggleFavorite;
 
   void selectRecipe(BuildContext context, Recipe recipe) {
     Navigator.of(context).push(
-      MaterialPageRoute(
-        builder:
-            (ctx) => RecipeDetailsScreen(
-              recipe: recipe,
-              onToggleFavorite: onToggleFavorite,
-            ),
-      ),
+      MaterialPageRoute(builder: (ctx) => RecipeDetailsScreen(recipe: recipe)),
     );
   }
 

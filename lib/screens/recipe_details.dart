@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:recipe_app/models/recipe.dart';
+import 'package:recipe_app/provider/favorites_provider.dart';
 
-class RecipeDetailsScreen extends StatelessWidget {
-  const RecipeDetailsScreen({
-    super.key,
-    required this.recipe,
-    required this.onToggleFavorite,
-  });
+class RecipeDetailsScreen extends ConsumerWidget {
+  const RecipeDetailsScreen({super.key, required this.recipe});
 
   final Recipe recipe;
-  final void Function(Recipe recipe) onToggleFavorite;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text(recipe.title),
         actions: [
           IconButton(
             onPressed: () {
-              onToggleFavorite(recipe);
+              final wasAdded = ref
+                  .read(favoriteRecipesProvider.notifier)
+                  .toggleRecipeFavoriteStatus(recipe);
+              ScaffoldMessenger.of(context).clearSnackBars();
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(wasAdded ? 'Recipe ditambahkan ke favorite.' : 'Recipe dihapus dari favorite.')));
             },
             icon: Icon(Icons.star),
           ),

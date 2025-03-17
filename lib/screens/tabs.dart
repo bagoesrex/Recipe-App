@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:recipe_app/models/recipe.dart';
+import 'package:recipe_app/provider/favorites_provider.dart';
 import 'package:recipe_app/provider/recipes_provider.dart';
 import 'package:recipe_app/screens/categories.dart';
 import 'package:recipe_app/screens/filters.dart';
@@ -27,29 +28,6 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
   int _selectedPageIndex = 0;
   final List<Recipe> _favoriteRecipes = [];
   Map<Filter, bool> _selectedFilters = kInitialFilters;
-
-  void _showInfoMessage(String message) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(message)));
-  }
-
-  void _toggleRecipeFavoriteStatus(Recipe recipe) {
-    final isExisting = _favoriteRecipes.contains(recipe);
-
-    if (isExisting) {
-      setState(() {
-        _favoriteRecipes.remove(recipe);
-      });
-      _showInfoMessage('Recipe dihapus dari favorite.');
-    } else {
-      setState(() {
-        _favoriteRecipes.add(recipe);
-      });
-      _showInfoMessage('Recipe ditambahkan ke favorite.');
-    }
-  }
 
   void _selectedPage(int index) {
     setState(() {
@@ -93,17 +71,12 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
           return true;
         }).toList();
 
-    Widget activePage = CategoriesScreen(
-      onToggleFavorite: _toggleRecipeFavoriteStatus,
-      availableRecipes: availableRecipes,
-    );
+    Widget activePage = CategoriesScreen(availableRecipes: availableRecipes);
     var activePageTitle = 'Categories';
 
     if (_selectedPageIndex == 1) {
-      activePage = RecipesScreen(
-        recipes: _favoriteRecipes,
-        onToggleFavorite: _toggleRecipeFavoriteStatus,
-      );
+      final favoriteRecipes = ref.watch(favoriteRecipesProvider);
+      activePage = RecipesScreen(recipes: favoriteRecipes);
       activePageTitle = 'Favorites';
     }
 
