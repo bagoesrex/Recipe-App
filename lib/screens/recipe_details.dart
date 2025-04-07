@@ -10,6 +10,10 @@ class RecipeDetailsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final favoriteRecipes = ref.watch(favoriteRecipesProvider);
+
+    final isfavorite = favoriteRecipes.contains(recipe);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(recipe.title),
@@ -24,7 +28,7 @@ class RecipeDetailsScreen extends ConsumerWidget {
                 context,
               ).showSnackBar(SnackBar(content: Text(wasAdded ? 'Recipe ditambahkan ke favorite.' : 'Recipe dihapus dari favorite.')));
             },
-            icon: Icon(Icons.star),
+            icon: Icon(isfavorite ? Icons.star : Icons.star_border),
           ),
         ],
       ),
