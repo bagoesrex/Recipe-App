@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:recipe_app/provider/favorites_provider.dart';
-import 'package:recipe_app/provider/recipes_provider.dart';
 import 'package:recipe_app/screens/categories.dart';
 import 'package:recipe_app/screens/filters.dart';
 import 'package:recipe_app/screens/recipes.dart';
@@ -44,25 +43,7 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final recipes = ref.watch(RecipesProvider);
-    final activeFilters = ref.watch(filtersProvider);
-    final availableRecipes =
-        recipes.where((recipe) {
-          if (activeFilters[Filter.glutenFree]! && !recipe.isGlutenFree) {
-            return false;
-          }
-          if (activeFilters[Filter.lactoseFree]! && !recipe.isLactoseFree) {
-            return false;
-          }
-          if (activeFilters[Filter.vegetarian]! && !recipe.isVegetarian) {
-            return false;
-          }
-          if (activeFilters[Filter.vegan]! && !recipe.isVegan) {
-            return false;
-          }
-
-          return true;
-        }).toList();
+    final availableRecipes = ref.watch(filteredRecipesProvider);
 
     Widget activePage = CategoriesScreen(availableRecipes: availableRecipes);
     var activePageTitle = 'Categories';
