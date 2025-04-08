@@ -32,6 +32,12 @@ class _CategoriesScreenState extends State<CategoriesScreen>
     _animationController.forward();
   }
 
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
   void _selectCategory(BuildContext context, Category category) {
     final filteredRecipes =
         widget.availableRecipes
