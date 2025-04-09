@@ -24,11 +24,20 @@ class RecipeDetailsScreen extends ConsumerWidget {
                   .read(favoriteRecipesProvider.notifier)
                   .toggleRecipeFavoriteStatus(recipe);
               ScaffoldMessenger.of(context).clearSnackBars();
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(wasAdded ? 'Recipe ditambahkan ke favorite.' : 'Recipe dihapus dari favorite.')));
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    wasAdded
+                        ? 'Recipe ditambahkan ke favorite.'
+                        : 'Recipe dihapus dari favorite.',
+                  ),
+                ),
+              );
             },
-            icon: Icon(isfavorite ? Icons.star : Icons.star_border),
+            icon: AnimatedSwitcher(
+              duration: const Duration(microseconds: 400),
+              child: Icon(isfavorite ? Icons.star : Icons.star_border),
+            ),
           ),
         ],
       ),
