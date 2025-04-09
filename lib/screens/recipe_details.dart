@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:recipe_app/models/recipe.dart';
@@ -35,8 +37,17 @@ class RecipeDetailsScreen extends ConsumerWidget {
               );
             },
             icon: AnimatedSwitcher(
-              duration: const Duration(microseconds: 400),
-              child: Icon(isfavorite ? Icons.star : Icons.star_border),
+              duration: const Duration(milliseconds: 400),
+              transitionBuilder: (child, animation) {
+                return RotationTransition(
+                  turns: Tween<double>(begin: 0.7, end: 1).animate(animation),
+                  child: child,
+                );
+              },
+              child: Icon(
+                isfavorite ? Icons.star : Icons.star_border,
+                key: ValueKey(isfavorite),
+              ),
             ),
           ),
         ],
